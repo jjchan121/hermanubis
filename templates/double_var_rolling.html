@@ -1,0 +1,27 @@
+class {{ className }}(Expression):
+    def __init__(self, lhs, rhs, window, *args, **kwargs):
+        super({{ className }}, self).__init__(short_name='{{ shortName }}', long_name='{{ longName }}', desc='{{ desc }}',
+                *args, **kwargs)
+        self.lhs = lhs
+        self.window = window
+
+    def evaluate(self, table):
+        window = self.window
+        lhs = self.lhs
+        rhs = self.rhs
+        lval = None
+        rval = None
+
+        if lhs is not None:
+            lval = lhs.eval(table)
+
+        if rhs is not None:
+            rval = rhs.eval(table)
+
+        return {{ func }}(lval, rval, window)
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return self.long_name + "(" + repr(self.lhs) + "," + repr(self.rhs) + str(self.window) + ")"
