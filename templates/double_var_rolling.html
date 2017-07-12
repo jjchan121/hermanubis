@@ -13,10 +13,10 @@ class {{ className }}(Expression):
         rval = None
 
         if lhs is not None:
-            lval = lhs.eval(table)
+            lval = lhs.evaluate(table)
 
         if rhs is not None:
-            rval = rhs.eval(table)
+            rval = rhs.evaluate(table)
 
         return {{ func }}(lval, rval, window)
 

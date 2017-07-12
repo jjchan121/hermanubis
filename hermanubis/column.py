@@ -7,8 +7,16 @@ class Column(Expression):
         self.name = name
 
     def evaluate(self, table):
+        name = self.name
         if isinstance(table, pd.Panel):
-            return table.loc[:, :, self.name]
+            if name in table.items:
+                return table.loc[self.name, :, :]
+            elif name in table.major_axis:
+                return table.loc[:, self.name, :]
+            elif name in table.minor_axis:
+                return table.loc[:, :, self.name]
+            else:
+                return None
         elif isinstance(table, pd.DataFrame):
             return table[self.name]
         else:

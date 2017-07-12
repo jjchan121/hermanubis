@@ -249,10 +249,10 @@ class Correlation(Expression):
         rval = None
 
         if lhs is not None:
-            lval = lhs.eval(table)
+            lval = lhs.evaluate(table)
 
         if rhs is not None:
-            rval = rhs.eval(table)
+            rval = rhs.evaluate(table)
 
         return pd.rolling_corr(lval, rval, window)
 
@@ -278,10 +278,10 @@ class Covariance(Expression):
         rval = None
 
         if lhs is not None:
-            lval = lhs.eval(table)
+            lval = lhs.evaluate(table)
 
         if rhs is not None:
-            rval = rhs.eval(table)
+            rval = rhs.evaluate(table)
 
         return pd.rolling_cov(lval, rval, window)
 

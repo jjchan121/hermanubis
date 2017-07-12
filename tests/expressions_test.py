@@ -30,6 +30,7 @@ class ExpressionTest(unittest.TestCase):
 
 
 
+
     def __np_assert_almost_equal(self, target, output, precision=10):
         try:
             np.testing.assert_almost_equal(target, output, precision)
