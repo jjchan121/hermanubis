@@ -20,7 +20,7 @@ class Column(Expression):
         elif isinstance(table, pd.DataFrame):
             return table[self.name]
         else:
-            raise NotImplementedError
+            raise RuntimeError("%s type is not support as table in %s.evaluate" % (type(table), self.__class__))
 
     def __str__(self):
         return self.__repr__()

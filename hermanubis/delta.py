@@ -18,7 +18,7 @@ class Delay(Expression):
             if isinstance(val, pd.Panel) or isinstance(val, pd.DataFrame) or isinstance(val, pd.Series):
                 return val.shift(self.periods)
             else:
-                raise NotImplementedError
+                raise RuntimeError("%s type is not support as table in Delay calculation" % type(table))
 
     def __str__(self):
         return self.__repr__()
@@ -50,7 +50,7 @@ class Delta(Expression):
                 else:
                     return out
             else:
-                raise NotImplementedError
+                raise RuntimeError("%s type is not support as table in Delta calculation" % type(table))
 
     def __str__(self):
         return self.__repr__()

@@ -1,12 +1,13 @@
 class {{ className }}(Expression):
-    def __init__(self, lhs, rhs, window, *args, **kwargs):
+    def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super({{ className }}, self).__init__(short_name='{{ shortName }}', long_name='{{ longName }}', desc='{{ desc }}',
                 *args, **kwargs)
         self.lhs = lhs
-        self.window = window
+        self.rhs = rhs
+        self.periods = periods
 
     def evaluate(self, table):
-        window = self.window
+        periods = self.periods
         lhs = self.lhs
         rhs = self.rhs
         lval = None
@@ -18,10 +19,10 @@ class {{ className }}(Expression):
         if rhs is not None:
             rval = rhs.evaluate(table)
 
-        return {{ func }}(lval, rval, window)
+        return {{ func }}(lval, rval, periods)
 
     def __str__(self):
         return self.__repr__()
 
     def __repr__(self):
-        return self.long_name + "(" + repr(self.lhs) + "," + repr(self.rhs) + str(self.window) + ")"
+        return self.long_name + "(" + repr(self.lhs) + "," + repr(self.rhs) + str(self.periods) + ")"

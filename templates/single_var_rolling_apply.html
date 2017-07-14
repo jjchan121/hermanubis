@@ -1,20 +1,20 @@
 class {{ className }}(Expression):
-    def __init__(self, expr, window, *args, **kwargs):
+    def __init__(self, expr, periods, *args, **kwargs):
         super({{ className }}, self).__init__(short_name='{{ shortName }}', long_name='{{ longName }}', desc='{{ desc }}',
             *args, **kwargs)
         self.expr = expr
-        self.window = window
+        self.periods = periods
 
     def evaluate(self, table):
-        window = self.window
+        periods = self.periods
         expr = self.expr
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_apply(val, window, {{ func }})
+        return pd.rolling_apply(val, periods, {{ func }})
 
     def __str__(self):
         return self.__repr__()
 
     def __repr__(self):
-        return self.long_name + "(" + repr(self.lhs) + ", " + str(self.window) + ")"
+        return self.long_name + "(" + repr(self.lhs) + ", " + str(self.periods) + ")"

@@ -9,9 +9,26 @@ from hermanubis.expressions import Plus
 from hermanubis.cross_section import Abs, Average
 from hermanubis.delta import Delta, Delay
 from hermanubis.functions import FuncWrapper
+from hermanubis.rolling import Max, Min
+from hermanubis.conditions import IfElse
+
+pf = pd.read_pickle('/Volumes/Transcend/data/HSI_const.pkl')
+
+# congession index
+periods = 10
+close = Column('Close')
+high = Column('High')
+low = Column('Low')
+ret = Delta(close, periods=periods-1, fillna_val=0) / Delay(close, periods=periods)
+denom = (Max(high, periods) - Min(low, periods))/ Min(low, periods)
+c_index = ret / denom
+
+c_index0 = c_index.evaluate(pf)
+c_index0.tail(100)
 
 
 
+# disparity index
 
 
 
@@ -22,7 +39,6 @@ avg = Average(log_ret)
 cross_section_ret = log_ret - Average(log_ret)
 weight = cross_section_ret / Abs(cross_section_ret)
 
-pf = pd.read_pickle('/Volumes/Transcend/data/HSI_const.pkl')
 
 
 log_close.evaluate(pf)
