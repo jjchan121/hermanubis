@@ -6,9 +6,9 @@ from hermanubis.expressions import Expression
 class Count(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Count, self).__init__(short_name='n', long_name='Count', desc='Rolling Count',
-            *args, **kwargs)
+                                    periods=periods,
+                                    *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -27,9 +27,9 @@ class Count(Expression):
 class Kurt(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Kurt, self).__init__(short_name='κ', long_name='Kurt', desc='Rolling Kurtosis',
-            *args, **kwargs)
+                                   periods=periods,
+                                   *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -48,9 +48,9 @@ class Kurt(Expression):
 class Max(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Max, self).__init__(short_name='H', long_name='Max', desc='Rolling Maxium',
-            *args, **kwargs)
+                                  periods=periods,
+                                  *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -69,9 +69,9 @@ class Max(Expression):
 class Min(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Min, self).__init__(short_name='L', long_name='Min', desc='Rolling Minimum',
-            *args, **kwargs)
+                                  periods=periods,
+                                  *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -90,9 +90,9 @@ class Min(Expression):
 class Mean(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Mean, self).__init__(short_name='μ', long_name='Mean', desc='Rolling Mean',
-            *args, **kwargs)
+                                   periods=periods,
+                                   *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -111,9 +111,9 @@ class Mean(Expression):
 class Median(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Median, self).__init__(short_name='ˉ', long_name='Median', desc='Rolling Median',
-            *args, **kwargs)
+                                     periods=periods,
+                                     *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -132,9 +132,9 @@ class Median(Expression):
 class Quantile(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Quantile, self).__init__(short_name='q', long_name='Quantile', desc='Rolling Quantile',
-            *args, **kwargs)
+                                       periods=periods,
+                                       *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -153,9 +153,9 @@ class Quantile(Expression):
 class Skew(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Skew, self).__init__(short_name='Ω', long_name='Skew', desc='Rolling Skew',
-            *args, **kwargs)
+                                   periods=periods,
+                                   *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -174,9 +174,9 @@ class Skew(Expression):
 class Sum(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Sum, self).__init__(short_name='∑', long_name='Sum', desc='Rolling Sum',
-            *args, **kwargs)
+                                  periods=periods,
+                                  *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -195,9 +195,9 @@ class Sum(Expression):
 class Stddev(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Stddev, self).__init__(short_name='s', long_name='Stddev', desc='Rolling Stddev',
-            *args, **kwargs)
+                                     periods=periods,
+                                     *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -216,9 +216,9 @@ class Stddev(Expression):
 class Var(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Var, self).__init__(short_name='V', long_name='Var', desc='Rolling Variance',
-            *args, **kwargs)
+                                  periods=periods,
+                                  *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -237,10 +237,10 @@ class Var(Expression):
 class Correlation(Expression):
     def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super(Correlation, self).__init__(short_name='ρ', long_name='Correlation', desc='Rolling Correlation',
-                *args, **kwargs)
+                                          periods=periods,
+                                          *args, **kwargs)
         self.lhs = lhs
         self.rhs = rhs
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods
@@ -267,10 +267,10 @@ class Correlation(Expression):
 class Covariance(Expression):
     def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super(Covariance, self).__init__(short_name='Ξ', long_name='Covariance', desc='Rolling Covariance',
-                *args, **kwargs)
+                                         periods=periods,
+                                         *args, **kwargs)
         self.lhs = lhs
         self.rhs = rhs
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods
@@ -297,9 +297,9 @@ class Covariance(Expression):
 class Prod(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Prod, self).__init__(short_name='∏', long_name='Prod', desc='Rolling Product',
-            *args, **kwargs)
+                                   periods=periods,
+                                   *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods
@@ -319,9 +319,9 @@ class Prod(Expression):
 class CumProd(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(CumProd, self).__init__(short_name='ʄ', long_name='CumProd', desc='Rolling Cumulative Product',
-            *args, **kwargs)
+                                      periods=periods,
+                                      *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods
@@ -341,9 +341,9 @@ class CumProd(Expression):
 class CumSum(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(CumSum, self).__init__(short_name='ʃ', long_name='CumSum', desc='Rolling Cumulative Sum',
-            *args, **kwargs)
+                                     periods=periods,
+                                     *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods
@@ -358,4 +358,3 @@ class CumSum(Expression):
 
     def __repr__(self):
         return self.long_name + "(" + repr(self.lhs) + ", " + str(self.periods) + ")"
-

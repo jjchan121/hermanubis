@@ -62,7 +62,8 @@ class ExpressionTest(unittest.TestCase):
         gt100 = a > Constant(100.0)
         gt100_res = gt100.evaluate(midf)
 
-        target = midf['A'] > 100.0
+        df = midf.xs('A', axis=1).unstack()
+        target = df > 100.0
         self.__np_assert_almost_equal(target.values, gt100_res.values)
 
 

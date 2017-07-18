@@ -8,9 +8,10 @@ from datetime import timedelta
 from hermanubis.constant import Constant
 from hermanubis.column import Column
 from hermanubis.conditions import IfElse
+from hermanubis.delay_feedback import DelayFeedback
 from hermanubis.expressions import Greater
 
-class ConditionTest(unittest.TestCase):
+class DelayFeedbackTest(unittest.TestCase):
     def setup(self):
 
         inst_id = [ i % 4 for i in range(20)]
@@ -38,19 +39,16 @@ class ConditionTest(unittest.TestCase):
         colB = Column("B")
         colC = Column("C")
 
-        cond = IfElse(colA > Constant(100.0), Constant(2), Constant(0.5))
+        delayf = DelayFeedback(colA, 0.5)
+        res = delayf.evaluate(df)
 
-        cond_data = cond.evaluate(df)
 
         # calc the target
-        arrA = np.copy(df.xs(['A'], axis=1).unstack().values)
-        arrB = df['B'].values
-        arrC = df['C'].values
+        arrA = np.copy(df['A'].values)
 
-        pred = arrA > 100.0
-        arrA[pred] = 2.0
-        arrA[np.logical_not(pred)] = 0.5
-        self.__np_assert_almost_equal(arrA, cond_data.values, 5)
+
+
+        self.__np_assert_almost_equal(arrA[0,:], cond_data.values.transpose()[0], 5)
 
 
 
@@ -59,5 +57,4 @@ class ConditionTest(unittest.TestCase):
             np.testing.assert_almost_equal(target, output, precision)
         except AssertionError as e:
             self.fail(e)
-
 

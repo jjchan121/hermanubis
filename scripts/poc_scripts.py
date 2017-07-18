@@ -27,6 +27,11 @@ c_index0 = c_index.evaluate(pf)
 c_index0.tail(100)
 
 
+%timeit hasattr(close, 'periods')
+hasattr(ret, 'periods')
+
+
+
 
 # disparity index
 
@@ -127,3 +132,52 @@ c = Abs(b)
 
 c = a + b
 c.evaluate(df)
+
+
+import pandas as pd
+import numpy as np
+df = pd.DataFrame(np.random.rand(3,5))
+print df
+df.apply(lambda x: hash(tuple(x)), axis = 1)
+
+
+# this one is better than the pandas's util hash_pandas_object
+hash_df = df.apply(lambda x: hash(tuple(x)), axis = 0)
+
+hash(df.values)
+
+pf.apply(lambda x: hash(tuple(x)), axis = 1)
+
+c0 = pd.util.hash_pandas_object(df, categorize=False)
+c1 = pd.util.hash_pandas_object(df, categorize=True)
+c2 = pd.util.hash_pandas_object(df, index=True, categorize=True)
+
+
+pf_hash = pd.util.hash_pandas_object(pf)
+
+pf.to_frame()
+pd.Panel.to_frame()
+
+
+pf2 = pf.swapaxes(0, 2, copy=True)
+
+
+df = pf2.to_frame()
+
+
+df.tail(120)
+
+pf2.to_pickle('/Volumes/Transcend/data/HSI_const.pkl')
+pf = pd.read_pickle('/Volumes/Transcend/data/HSI_const.pkl')
+
+
+
+h0 = pd.util.hash_pandas_object(df, index=True, categorize=True)
+h1 = pd.util.hash_pandas_object(df, index=False, categorize=True)
+h2 = pd.util.hash_pandas_object(df, index=True, categorize=False)
+h3 = pd.util.hash_pandas_object(df, index=False, categorize=False)
+
+
+h0.equals(h2)
+h1.equals(h3)
+

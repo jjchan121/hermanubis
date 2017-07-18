@@ -5,9 +5,10 @@ from hermanubis.expressions import Expression
 class Delay(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Delay, self).__init__(short_name='d', long_name='Delay', desc='Delay',
+                                    periods=periods,
                                       *args, **kwargs)
         self.expr = expr
-        self.periods = periods
+        # self.periods = periods
 
     def evaluate(self, table):
         expr = self.expr
@@ -31,9 +32,10 @@ class Delay(Expression):
 class Delta(Expression):
     def __init__(self, expr, periods, fillna_val=None, *args, **kwargs):
         super(Delta, self).__init__(short_name='d', long_name='Delta', desc='Delta',
+                                    periods=periods,
                                     *args, **kwargs)
         self.expr = expr
-        self.periods = periods
+        # self.periods = periods
         self.fillna_val = fillna_val
 
     def evaluate(self, table):

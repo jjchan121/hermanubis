@@ -1,10 +1,10 @@
 class {{ className }}(Expression):
     def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super({{ className }}, self).__init__(short_name='{{ shortName }}', long_name='{{ longName }}', desc='{{ desc }}',
+                periods=periods,
                 *args, **kwargs)
         self.lhs = lhs
         self.rhs = rhs
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods

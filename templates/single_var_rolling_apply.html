@@ -1,9 +1,9 @@
 class {{ className }}(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super({{ className }}, self).__init__(short_name='{{ shortName }}', long_name='{{ longName }}', desc='{{ desc }}',
+            periods=periods,
             *args, **kwargs)
         self.expr = expr
-        self.periods = periods
 
     def evaluate(self, table):
         periods = self.periods

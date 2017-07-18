@@ -12,13 +12,14 @@ class SequentialMode(Enum):
     ON = 2
 
 class Expression(object):
-    def __init__(self, short_name=None, long_name=None, desc=None,
+    def __init__(self, short_name=None, long_name=None, desc=None, periods=1,
                  calc_mode=CalcMode.BATCH, seq_mode = SequentialMode.OFF, *args, **kwargs):
         self.short_name = short_name
         self.long_name = long_name
         self.desc = desc
         self.calc_mode = calc_mode
-        self.seq_mode = seq_mode
+        self.seq_mode = seq_mode # TODO: Review this, WTF we have to deal with it?
+        self.periods = periods
 
     def evaluate(self, table, *args, **kwargs):
         raise NotImplementedError

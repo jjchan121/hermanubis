@@ -18,7 +18,10 @@ class Column(Expression):
             else:
                 return None
         elif isinstance(table, pd.DataFrame):
-            return table[self.name]
+            if isinstance(table.index, pd.core.index.MultiIndex):
+                return table.xs(self.name, axis=1).unstack()
+            else:
+                return table[self.name]
         else:
             raise RuntimeError("%s type is not support as table in %s.evaluate" % (type(table), self.__class__))
 
