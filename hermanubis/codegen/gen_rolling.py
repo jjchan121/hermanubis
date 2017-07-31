@@ -10,22 +10,22 @@ single_var_rolling_apply_tmp = env.get_template('single_var_rolling_apply.html')
 file_tmp = env.get_template('class_file.html')
 
 funcs = [
-    ['pd.rolling_count', 'Count', 'n', 'Rolling Count'],
-    ['pd.rolling_kurt', 'Kurt', 'κ', 'Rolling Kurtosis'],
-    ['pd.rolling_max', 'Max', 'H', 'Rolling Maxium'],
-    ['pd.rolling_min', 'Min', 'L', 'Rolling Minimum'],
-    ['pd.rolling_mean', 'Mean', 'μ', 'Rolling Mean'], # 02C9
-    ['pd.rolling_median', 'Median', 'ˉ', 'Rolling Median'], #02C8
-    ['pd.rolling_quantile', 'Quantile', 'q', 'Rolling Quantile'],
-    ['pd.rolling_skew', 'Skew', 'Ω', 'Rolling Skew'],
-    ['pd.rolling_sum', 'Sum', '∑', 'Rolling Sum'], # 2211
-    ['pd.rolling_std', 'Stddev', 's', 'Rolling Stddev'],
-    ['pd.rolling_var', 'Var', 'V', 'Rolling Variance'],
+    ['count', 'Count', 'n', 'Rolling Count'],
+    ['kurt', 'Kurt', 'κ', 'Rolling Kurtosis'],
+    ['max', 'Max', 'H', 'Rolling Maxium'],
+    ['min', 'Min', 'L', 'Rolling Minimum'],
+    ['mean', 'Mean', 'μ', 'Rolling Mean'], # 02C9
+    ['median', 'Median', 'ˉ', 'Rolling Median'], #02C8
+#    ['pd.rolling_quantile', 'Quantile', 'q', 'Rolling Quantile'],
+    ['skew', 'Skew', 'Ω', 'Rolling Skew'],
+    ['sum', 'Sum', '∑', 'Rolling Sum'], # 2211
+    ['std', 'Stddev', 's', 'Rolling Stddev'],
+    ['var', 'Var', 'V', 'Rolling Variance'],
 ]
 
 two_vars_funcs = [
-    ['pd.rolling_corr', 'Correlation', 'ρ', 'Rolling Correlation'], #03c1
-    ['pd.rolling_cov', 'Covariance', 'Ξ', 'Rolling Covariance'], #2211
+    ['corr', 'Correlation', 'ρ', 'Rolling Correlation'], #03c1
+    ['cov', 'Covariance', 'Ξ', 'Rolling Covariance'], #2211
 ]
 
 rolling_apply_funcs = [

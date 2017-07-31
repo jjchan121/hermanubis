@@ -19,7 +19,7 @@ class {{ className }}(Expression):
         if rhs is not None:
             rval = rhs.evaluate(table)
 
-        return {{ func }}(lval, rval, periods)
+        return lval.rolling(window=periods).{{ func }}(rval)
 
     def __str__(self):
         return self.__repr__()

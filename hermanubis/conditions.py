@@ -1,23 +1,7 @@
 import numpy as np
 import pandas as pd
-import theano
 from builtins import isinstance
-from theano import tensor as T
-from theano.ifelse import ifelse
 from hermanubis.expressions import Expression
-
-# theano.config.compute_test_value = 'off'
-
-
-# p = T.fmatrix('p')
-# te = T.fmatrix('te')
-# fe = T.fmatrix('fe')
-#
-# out = ifelse(p, te, fe)
-# out = T.switch(p, te, fe)
-
-# ifelse_fn = theano.function([p, te, fe], outputs=out, mode=theano.Mode(linker='vm'))
-# ifelse_fn = theano.function([p, te, fe], outputs=out)
 
 class IfElse(Expression):
     def __init__(self, predicate, true_exp, else_exp, *args, **kwargs):

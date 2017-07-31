@@ -6,8 +6,8 @@ from hermanubis.expressions import Expression
 class Count(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Count, self).__init__(short_name='n', long_name='Count', desc='Rolling Count',
-                                    periods=periods,
-                                    *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -15,7 +15,7 @@ class Count(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_count(val, self.periods)
+        return val.rolling(window=self.periods, center=False).count()
 
     def __str__(self):
         return self.__repr__()
@@ -27,8 +27,8 @@ class Count(Expression):
 class Kurt(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Kurt, self).__init__(short_name='κ', long_name='Kurt', desc='Rolling Kurtosis',
-                                   periods=periods,
-                                   *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -36,7 +36,7 @@ class Kurt(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_kurt(val, self.periods)
+        return val.rolling(window=self.periods, center=False).kurt()
 
     def __str__(self):
         return self.__repr__()
@@ -48,8 +48,8 @@ class Kurt(Expression):
 class Max(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Max, self).__init__(short_name='H', long_name='Max', desc='Rolling Maxium',
-                                  periods=periods,
-                                  *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -57,7 +57,7 @@ class Max(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_max(val, self.periods)
+        return val.rolling(window=self.periods, center=False).max()
 
     def __str__(self):
         return self.__repr__()
@@ -69,8 +69,8 @@ class Max(Expression):
 class Min(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Min, self).__init__(short_name='L', long_name='Min', desc='Rolling Minimum',
-                                  periods=periods,
-                                  *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -78,7 +78,7 @@ class Min(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_min(val, self.periods)
+        return val.rolling(window=self.periods, center=False).min()
 
     def __str__(self):
         return self.__repr__()
@@ -90,8 +90,8 @@ class Min(Expression):
 class Mean(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Mean, self).__init__(short_name='μ', long_name='Mean', desc='Rolling Mean',
-                                   periods=periods,
-                                   *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -99,7 +99,7 @@ class Mean(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_mean(val, self.periods)
+        return val.rolling(window=self.periods, center=False).mean()
 
     def __str__(self):
         return self.__repr__()
@@ -111,8 +111,8 @@ class Mean(Expression):
 class Median(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Median, self).__init__(short_name='ˉ', long_name='Median', desc='Rolling Median',
-                                     periods=periods,
-                                     *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -120,28 +120,7 @@ class Median(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_median(val, self.periods)
-
-    def __str__(self):
-        return self.__repr__()
-
-    def __repr__(self):
-        return self.long_name + "(" + repr(self.lhs) + ", " + str(self.periods) + ")"
-
-
-class Quantile(Expression):
-    def __init__(self, expr, periods, *args, **kwargs):
-        super(Quantile, self).__init__(short_name='q', long_name='Quantile', desc='Rolling Quantile',
-                                       periods=periods,
-                                       *args, **kwargs)
-        self.expr = expr
-
-    def evaluate(self, table):
-        expr = self.expr
-        val = None
-        if expr is not None:
-            val = expr.evaluate(table)
-        return pd.rolling_quantile(val, self.periods)
+        return val.rolling(window=self.periods, center=False).median()
 
     def __str__(self):
         return self.__repr__()
@@ -153,8 +132,8 @@ class Quantile(Expression):
 class Skew(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Skew, self).__init__(short_name='Ω', long_name='Skew', desc='Rolling Skew',
-                                   periods=periods,
-                                   *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -162,7 +141,7 @@ class Skew(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_skew(val, self.periods)
+        return val.rolling(window=self.periods, center=False).skew()
 
     def __str__(self):
         return self.__repr__()
@@ -174,8 +153,8 @@ class Skew(Expression):
 class Sum(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Sum, self).__init__(short_name='∑', long_name='Sum', desc='Rolling Sum',
-                                  periods=periods,
-                                  *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -183,7 +162,7 @@ class Sum(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_sum(val, self.periods)
+        return val.rolling(window=self.periods, center=False).sum()
 
     def __str__(self):
         return self.__repr__()
@@ -195,8 +174,8 @@ class Sum(Expression):
 class Stddev(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Stddev, self).__init__(short_name='s', long_name='Stddev', desc='Rolling Stddev',
-                                     periods=periods,
-                                     *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -204,7 +183,7 @@ class Stddev(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_std(val, self.periods)
+        return val.rolling(window=self.periods, center=False).std()
 
     def __str__(self):
         return self.__repr__()
@@ -216,8 +195,8 @@ class Stddev(Expression):
 class Var(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Var, self).__init__(short_name='V', long_name='Var', desc='Rolling Variance',
-                                  periods=periods,
-                                  *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -225,7 +204,7 @@ class Var(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return pd.rolling_var(val, self.periods)
+        return val.rolling(window=self.periods, center=False).var()
 
     def __str__(self):
         return self.__repr__()
@@ -237,8 +216,8 @@ class Var(Expression):
 class Correlation(Expression):
     def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super(Correlation, self).__init__(short_name='ρ', long_name='Correlation', desc='Rolling Correlation',
-                                          periods=periods,
-                                          *args, **kwargs)
+                periods=periods,
+                *args, **kwargs)
         self.lhs = lhs
         self.rhs = rhs
 
@@ -255,7 +234,7 @@ class Correlation(Expression):
         if rhs is not None:
             rval = rhs.evaluate(table)
 
-        return pd.rolling_corr(lval, rval, periods)
+        return lval.rolling(window=periods).corr(rval)
 
     def __str__(self):
         return self.__repr__()
@@ -267,8 +246,8 @@ class Correlation(Expression):
 class Covariance(Expression):
     def __init__(self, lhs, rhs, periods, *args, **kwargs):
         super(Covariance, self).__init__(short_name='Ξ', long_name='Covariance', desc='Rolling Covariance',
-                                         periods=periods,
-                                         *args, **kwargs)
+                periods=periods,
+                *args, **kwargs)
         self.lhs = lhs
         self.rhs = rhs
 
@@ -285,7 +264,7 @@ class Covariance(Expression):
         if rhs is not None:
             rval = rhs.evaluate(table)
 
-        return pd.rolling_cov(lval, rval, periods)
+        return lval.rolling(window=periods).cov(rval)
 
     def __str__(self):
         return self.__repr__()
@@ -297,8 +276,8 @@ class Covariance(Expression):
 class Prod(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(Prod, self).__init__(short_name='∏', long_name='Prod', desc='Rolling Product',
-                                   periods=periods,
-                                   *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -319,8 +298,8 @@ class Prod(Expression):
 class CumProd(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(CumProd, self).__init__(short_name='ʄ', long_name='CumProd', desc='Rolling Cumulative Product',
-                                      periods=periods,
-                                      *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -341,8 +320,8 @@ class CumProd(Expression):
 class CumSum(Expression):
     def __init__(self, expr, periods, *args, **kwargs):
         super(CumSum, self).__init__(short_name='ʃ', long_name='CumSum', desc='Rolling Cumulative Sum',
-                                     periods=periods,
-                                     *args, **kwargs)
+            periods=periods,
+            *args, **kwargs)
         self.expr = expr
 
     def evaluate(self, table):
@@ -358,3 +337,4 @@ class CumSum(Expression):
 
     def __repr__(self):
         return self.long_name + "(" + repr(self.lhs) + ", " + str(self.periods) + ")"
+

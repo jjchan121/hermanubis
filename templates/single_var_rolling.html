@@ -10,7 +10,7 @@ class {{ className }}(Expression):
         val = None
         if expr is not None:
             val = expr.evaluate(table)
-        return {{ func }}(val, self.periods)
+        return val.rolling(window=self.periods, center=False).{{ func }}()
 
     def __str__(self):
         return self.__repr__()
